@@ -28,8 +28,7 @@ function max(array) {
 function sum(array) {
   var count = 0;
   for (var i = 0; i < array.length; i++) {
-    if (isFinite(array[i])) {
-    }
+    if (isFinite(array[i])) count += array[i];
   }
   return count;
 }
