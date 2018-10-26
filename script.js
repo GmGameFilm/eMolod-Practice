@@ -1,49 +1,14 @@
-var array1 = [3,0,-5,1,44,-12,3,0,0,1,2,-3,-3,2,1,4,-2-3-1],
-array2 = [1, 7,3],
-array3 = [1,undefined,3,5,-3],
-array4 = [1,NaN,3,5,-3];
-
-function min(array) {
-var currentElement;
-for (var i = 0; i < array.length; i++) {
-  if (isFinite(array[i])){
-    if(currentElement === undefined) currentElement = array[i];
-    if (array[i]<currentElement) currentElement = array[i];
-  }
+var array = [2, 1, 5, 0, 3, 4, 7, 2, 3, 1, 0], posMax = 0, genElemLeft=0, genElemRight=0, water=0;
+for(var pos = 0; pos<array.length; pos++) 
+	if (array[pos]>=array[posMax])	posMax = pos;
+console.log(posMax);
+var arrayLeft = array.slice(0, posMax), arrayRight = array.slice(posMax+1).reverse();
+if (arrayLeft.length>1) 
+for (var i = 0; i<arrayLeft.length; i++) {
+	if(arrayLeft[genElemLeft]<=arrayLeft[i+1]) genElemLeft = i+1; else if (arrayLeft[genElemLeft]>arrayLeft[i+1]) water+=arrayLeft[genElemLeft] - arrayLeft[i+1];
 }
-return currentElement;
+if (arrayRight.length>1)
+for (var i = 0; i<arrayRight.length; i++) {
+	if(arrayRight[genElemRight]<=arrayRight[i+1]) genElemRight = i+1; else if (arrayRight[genElemRight]>arrayRight[i+1]) water+=arrayRight[genElemRight] - arrayRight[i+1];
 }
-
-function max(array) {
-  var currentElement;
-  for (var i = 0; i < array.length; i++) {
-    if (isFinite(array[i])){
-      if(currentElement === undefined) currentElement = array[i];
-      if (array[i]>currentElement) currentElement = array[i];
-    }
-  }
-  return currentElement;
-}
-
-function sum(array) {
-  var count = 0;
-  for (var i = 0; i < array.length; i++) {
-    if (isFinite(array[i])) count += array[i];
-  }
-  return count;
-}
-
-console.log(sum(array1)+" sum(array1)");
-console.log(sum(array2)+" sum(array2)");
-console.log(sum(array3)+" sum(array3)");
-console.log(sum(array4)+" sum(array4)");
-console.log("");
-console.log(min(array1)+" min(array1)");
-console.log(min(array2)+" min(array2)");
-console.log(min(array3)+" min(array3)");
-console.log(min(array4)+" min(array4)");
-console.log("");
-console.log(max(array1)+" max(array1)");
-console.log(max(array2)+" max(array2)");
-console.log(max(array3)+" max(array3)");
-console.log(max(array4)+" max(array4)");
+console.log(water);
